@@ -1,7 +1,10 @@
 build:
   tags: [ local-gitlab-dev ]
   stage: build
+  only:
+    changes:
+      - website/*
   rules:
     - if: '$TARGETTASKNAME!= "sync-task"'
   script:
-    - make all
+    - echo "build run"
