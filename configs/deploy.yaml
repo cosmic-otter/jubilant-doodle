@@ -1,0 +1,7 @@
+deploy:
+  tags: [ local-gitlab-dev ]
+  stage: deploy
+  rules:
+    - if: '$TARGETTASKNAME!= "sync-task"'
+  script:
+    - make all

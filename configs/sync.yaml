@@ -1,0 +1,29 @@
+sync:
+  before_script:
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "$SSH_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+
+  tags: [ local-gitlab-dev ]
+  stage: sync
+  rules:
+    - if: '$TARGETTASKNAME== "sync-task"'
+  script:
+    - git config --global user.email "srv@hrl.internal"
+    - git config --global user.name "Service Account"
+    - git branch --all
+    - git remote -vv
+    - git checkout -b mergebranch
+    - git branch --all
+    - git remote add upstream https://github.com/cosmic-otter/jubilant-doodle.git || true
+    - git fetch upstream
+    - git pull --no-edit --no-ff upstream main -X theirs
+    - git checkout master
+    - git merge mergebranch
+    - git remote set-url origin git@repo.dev.hrl.internal:root/website.git
+    - git remote -vv
+    - |
+      if ! git diff --quiet origin/master --name-only; then \
+        git -c core.sshCommand='ssh -o StrictHostKeyChecking=accept-new' push -u origin master; \
+      fi
