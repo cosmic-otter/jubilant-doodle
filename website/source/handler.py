@@ -3,6 +3,8 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.middleware.gzip import GZipMiddleware
+from fastapi.encoders import jsonable_encoder
+from fastapi.responses import JSONResponse
 import requests
 from datetime import datetime
 # from models import Pages, Database
@@ -52,7 +54,8 @@ async def home(request: Request):
 
 @app.get("/health", response_class=HTMLResponse)
 async def health(request: Request, status_code=200):
-    return {"status": "UP"}
+    json_compatible_item_data = jsonable_encoder({"status": "UP"})
+    return JSONResponse(content=json_compatible_item_data)
 
 if __name__ == "__main__":
     import uvicorn
