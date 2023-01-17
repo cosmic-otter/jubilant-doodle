@@ -11,13 +11,14 @@ deploy:
   rules:
     - if: '$TARGETTASKNAME!= "sync-task"'
   script:
-    - apt update
+    - apt-get update
     - |
-      apt install -y \
+      apt-get install -y \
         curl \
         jq \
-        yq \
         git
+    - wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64
+    - chmod a+x /usr/local/bin/yq
     - |
       export VERSION=$(\
         curl -X GET http://registry.dev.hrl.internal:5000/v2/website/tags/list \
@@ -29,4 +30,5 @@ deploy:
     - git config --global user.name "Service Account"
     - git add -A
     - git commit -m "Bump Version - Automatic"
+    - git remote set-url origin git@repo.dev.hrl.internal:root/website.git
     - git push -u origin master
