@@ -1,5 +1,5 @@
 sync:
-  image: ubuntu:18.04
+  image: gcc:latest
   before_script:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
