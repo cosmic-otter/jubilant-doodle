@@ -1,4 +1,5 @@
 build:
+  image: docker:latest
   tags: [ local-gitlab-dev ]
   stage: build
   rules:
