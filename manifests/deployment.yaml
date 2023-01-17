@@ -2,24 +2,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: app-deployment
+  name: website-deployment
   labels:
-    app: app
+    app: website
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
-      app: app
+      app: website
   template:
     metadata:
       labels:
-        app: app
+        app: website
     spec:
-      imagePullSecrets:
-        - name: registry-key
       containers:
-      - name: app
-        image: redacted
+      - name: website
+        image: registry.dev.hrl.internal:5000/website
         imagePullPolicy: Always
         ports:
-          - containerPort: 8080
+          - containerPort: 3000

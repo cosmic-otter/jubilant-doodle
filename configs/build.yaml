@@ -7,4 +7,6 @@ build:
   rules:
     - if: '$TARGETTASKNAME!= "sync-task"'
   script:
-    - echo "build run"
+    - docker build -t api-website ./website
+    - docker tag api-website registry.dev.hrl.internal:5000/website:0.0.1
+    - docker push registry.dev.hrl.internal:5000/website:0.0.1

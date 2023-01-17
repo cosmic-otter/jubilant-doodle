@@ -1,1 +1,54 @@
-hello world !
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <title>Project - Artifacts</title>
+    </head>
+    <body>
+        <div class="container">
+            <h1>List of artifacts</h1>
+            <ul class="list-group list-group-light">
+                <li class="list-group-item">
+                    <div class="row">
+                        <div class="col">
+                            <h2>Project ID</h2>
+                        </div>
+                        <div class="col">
+                            <h2>Date</h2>
+                        </div>
+                        <div class="col">
+                            <h2>Author</h2>
+                        </div>
+                        <div class="col">
+                            <h2>Filename</h2>
+                        </div>
+                    </div>
+                </li>
+                {% for record in data %}
+                    <li class="list-group-item">
+                        <div class="row">
+                            <div class="col">
+                                <h4>{{ record.job_id }}</h4>
+                            </div>
+                            <div class="col">
+                                <h4>{{ record.created_at }}</h4>
+                            </div>
+                            <div class="col">
+                                <h4>{{ record.actor }}</h4>
+                            </div>
+                            <div class="col">
+                                <h4><a href="http://repo.dev.hrl.internal/root/hello/-/jobs/{{ record.job_id }}/artifacts/download?file_type=archive">{{ record.file_name }}</a></h4>
+                            </div>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </body>
+</html>
