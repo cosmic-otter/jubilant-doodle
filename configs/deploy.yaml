@@ -29,6 +29,8 @@ deploy:
     - cat manifests/deployment.yaml
     - git config --global user.email "srv@hrl.internal"
     - git config --global user.name "Service Account"
+    - git checkout master
+    - git branch --all
     - git add -A
     - git commit -m "Bump Version - Automatic"
     - git remote set-url origin git@repo.dev.hrl.internal:root/website.git
