@@ -1,5 +1,3 @@
-image: docker:19.03.1
-
 variables:
   DOCKER_DRIVER: overlay2
   DOCKER_HOST: tcp://localhost:2375
