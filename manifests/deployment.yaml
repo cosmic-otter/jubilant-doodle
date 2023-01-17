@@ -29,3 +29,17 @@ spec:
             cpu: "0.2"
         ports:
           - containerPort: 3000
+        livenessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /
+            port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 5
+        readinessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 5
