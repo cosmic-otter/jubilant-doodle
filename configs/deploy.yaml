@@ -23,7 +23,7 @@ deploy:
     - |
       export VERSION=$(\
         curl -X GET http://registry.dev.hrl.internal:5000/v2/website/tags/list \
-          | jq -r '.tags[0]'
+          | jq -r '.tags | sort_by(.) | reverse | .[0]'
         )
     - yq -i ".spec.template.spec.containers[0].image = \"registry.dev.hrl.internal:5000/website:$VERSION\"" manifests/deployment.yaml
     - cat manifests/deployment.yaml
