@@ -34,4 +34,4 @@ deploy:
     - git add -A
     - git commit -m "Bump Version - Automatic"
     - git remote set-url origin git@repo.dev.hrl.internal:root/website.git
-    - git -c core.sshCommand='ssh -o StrictHostKeyChecking=accept-new' push -u origin master
+    - git -c core.sshCommand='ssh -o StrictHostKeyChecking=accept-new' push -o ci.skip -u origin master
