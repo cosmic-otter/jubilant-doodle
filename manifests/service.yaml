@@ -11,4 +11,3 @@ spec:
   ports:
     - name: http
       port: 80
-  clusterIP: k3s.dev.hrl.internal
