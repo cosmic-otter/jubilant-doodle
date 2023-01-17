@@ -1,3 +1,5 @@
+image: ubuntu:18.04
+
 variables:
   DOCKER_DRIVER: overlay2
   DOCKER_HOST: tcp://localhost:2375
