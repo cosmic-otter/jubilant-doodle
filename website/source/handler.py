@@ -51,7 +51,7 @@ async def home(request: Request):
     return templates.TemplateResponse("index.jinja", {"request": request, "data": data})
 
 @app.get("/health", response_class=HTMLResponse)
-async def health(request: Request):
+async def health(request: Request, status_code=200):
     return {"status": "UP"}
 
 if __name__ == "__main__":
