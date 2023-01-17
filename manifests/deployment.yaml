@@ -18,7 +18,7 @@ spec:
     spec:
       containers:
       - name: website
-        image: registry.dev.hrl.internal:5000/website:0.0.4
+        image: registry.dev.hrl.internal:5000/website:1
         imagePullPolicy: Always
         resources:
           limits:
@@ -29,11 +29,11 @@ spec:
             cpu: "0.2"
         ports:
           - containerPort: 3000
-        # livenessProbe:
-        #   httpGet:
-        #     scheme: HTTP
-        #     path: /health
-        #     port: 3000
-        #     initialDelaySeconds: 10
-        #     periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            scheme: HTTP
+            path: /health
+            port: 3000
+            initialDelaySeconds: 10
+            periodSeconds: 5
 
