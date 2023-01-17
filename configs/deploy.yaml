@@ -2,8 +2,7 @@ deploy:
   tags: [ local-gitlab-dev ]
   stage: deploy
   needs: [ 'build' ]
-  only:
-    changes:
-      - website/*
+  rules:
+    - if: '$TARGETTASKNAME!= "sync-task"'
   script:
     - echo "deploy run"

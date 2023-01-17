@@ -1,11 +1,8 @@
 build:
   tags: [ local-gitlab-dev ]
   stage: build
-  only:
-    changes:
-      - website/*
-  except:
-    - schedules
+  rules:
+    - if: '$TARGETTASKNAME!= "sync-task"'
   script:
     - docker build -t api-website ./website
     - docker tag api-website registry.dev.hrl.internal:5000/website:0.0.1
