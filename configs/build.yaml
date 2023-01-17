@@ -1,6 +1,6 @@
 build:
   image: docker:latest
-  before_scripts:
+  before_script:
     - mkdir -p /etc/docker
     - |
       cat > /etc/docker/daemon.json <<EOF
