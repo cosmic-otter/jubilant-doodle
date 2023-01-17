@@ -4,6 +4,8 @@ kind: Service
 metadata:
   name: website
   namespace: website
+  annotations:
+    kubernetes.io/hostname: "k3s.dev.hrl.internal"
 spec:
   selector:
     app: website
