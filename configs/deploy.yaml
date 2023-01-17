@@ -11,8 +11,13 @@ deploy:
   rules:
     - if: '$TARGETTASKNAME!= "sync-task"'
   script:
-    - apk update
-    - apk add curl jq yq
+    - apt update
+    - |
+      apt install -y \
+        curl \
+        jq \
+        yq \
+        git
     - |
       export VERSION=$(\
         curl -X GET http://registry.dev.hrl.internal:5000/v2/website/tags/list \
