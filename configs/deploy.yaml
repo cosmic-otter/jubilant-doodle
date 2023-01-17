@@ -1,9 +1,27 @@
 deploy:
   image: ubuntu:18.04
+  before_script:
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - echo "$SSH_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
   tags: [ local-gitlab-dev ]
   stage: deploy
   needs: [ 'build' ]
   rules:
     - if: '$TARGETTASKNAME!= "sync-task"'
   script:
-    - echo "deploy run"
+    - apk update
+    - apk add curl jq yq
+    - |
+      export VERSION=$(\
+        curl -X GET http://registry.dev.hrl.internal:5000/v2/website/tags/list \
+          | jq -r '.tags[0]'
+        )
+    - yq ".spec.template.spec.containers[0].image = registry.dev.hrl.internal:5000/website:$VERSION" manifests/deployment.yaml
+    - cat manifests/deployment.yaml
+    - git config --global user.email "srv@hrl.internal"
+    - git config --global user.name "Service Account"
+    - git add -A
+    - git commit -m "Bump Version - Automatic"
+    - git push -u origin master

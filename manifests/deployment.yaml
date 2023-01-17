@@ -2,11 +2,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: website-deployment
+  name: website
+  namespace: website
   labels:
     app: website
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       app: website
@@ -17,7 +18,14 @@ spec:
     spec:
       containers:
       - name: website
-        image: registry.dev.hrl.internal:5000/website
+        image: registry.dev.hrl.internal:5000/website:{{VERSION}}
         imagePullPolicy: Always
+        resources:
+          limits:
+            memory: 512Mi
+            cpu: "1"
+          requests:
+            memory: 256Mi
+            cpu: "0.2"
         ports:
           - containerPort: 3000
