@@ -12,3 +12,17 @@ spec:
     - name: http
       port: 80
       targetPort: 3000
+  livenessProbe:
+    httpGet:
+      scheme: HTTP
+      path: /
+      port: 80
+      initialDelaySeconds: 10
+      periodSeconds: 5
+  readinessProbe:
+    httpGet:
+      scheme: HTTP
+      path: /
+      port: 80
+    initialDelaySeconds: 10
+    periodSeconds: 5
