@@ -1,14 +1,14 @@
 build:
   image: docker:latest
   before_script:
-    - apk update
-    - apk add curl
     - cat /etc/docker/daemon.json
   tags: [ local-gitlab-dev ]
   stage: build
   rules:
     - if: '$TARGETTASKNAME!= "sync-task"'
   script:
+    - apk update
+    - apk add curl
     - |
       export VERSION=$(\
         curl -X GET http://registry.dev.hrl.internal:5000/v2/website/tags/list \
