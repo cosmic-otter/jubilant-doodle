@@ -4,9 +4,6 @@ kind: Service
 metadata:
   name: website
   namespace: website
-  annotations:
-    service.beta.kubernetes.io/aws-load-balancer-healthcheck-protocol: http
-    service.beta.kubernetes.io/aws-load-balancer-healthcheck-path: /
 spec:
   selector:
     app: website
