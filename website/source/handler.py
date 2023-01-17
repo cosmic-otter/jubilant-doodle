@@ -50,6 +50,10 @@ async def home(request: Request):
 
     return templates.TemplateResponse("index.jinja", {"request": request, "data": data})
 
+@app.get("/health", response_class=HTMLResponse)
+async def home(request: Request):
+    return {"status": "UP"}
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=3000)

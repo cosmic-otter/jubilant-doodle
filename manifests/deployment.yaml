@@ -32,14 +32,14 @@ spec:
         livenessProbe:
           httpGet:
             scheme: HTTP
-            path: /
+            path: /health
             port: 3000
             initialDelaySeconds: 10
             periodSeconds: 5
         readinessProbe:
           httpGet:
             scheme: HTTP
-            path: /
+            path: /health
             port: 3000
           initialDelaySeconds: 10
           periodSeconds: 5
