@@ -1,5 +1,14 @@
 build:
   image: docker:latest
+  before_scripts:
+    - mkdir -p /etc/docker
+    - |
+      cat > /etc/docker/daemon.json <<EOF
+      {
+        "insecure-registries" : [ "registry.dev.hrl.internal:5000" ]
+      }
+      EOF
+    - systemctl restart docker
   tags: [ local-gitlab-dev ]
   stage: build
   rules:
