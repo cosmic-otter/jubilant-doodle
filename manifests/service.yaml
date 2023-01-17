@@ -4,19 +4,11 @@ kind: Service
 metadata:
   name: website
   namespace: website
-  annotations:
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-port: "80"
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-protocol: "http"
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-path: "/health"
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-check-interval-seconds: "10"
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-response-timeout-seconds: "10"
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-unhealthy-threshold: "5"
-    service.beta.kubernetes.io/do-loadbalancer-healthcheck-healthy-threshold: "1"
-    service.beta.kubernetes.io/do-loadbalancer-hostname: "k3s.dev.hrl.internal"
 spec:
   selector:
     app: website
   type: LoadBalancer
+  loadBalancerIP: "k3s.dev.hrl.internal"
   ports:
     - name: http
       port: 80
