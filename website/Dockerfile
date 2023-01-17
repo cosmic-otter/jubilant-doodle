@@ -5,4 +5,4 @@ RUN pip install -r requirements.txt
 
 COPY source/ .
 
-CMD ["uvicorn", "handler:app", "--host", "ks3.dev.hrl.internal", "--port", "3000"]
+CMD ["uvicorn", "handler:app", "--host", "0.0.0.0", "--port", "3000"]
