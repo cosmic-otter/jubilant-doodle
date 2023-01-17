@@ -9,6 +9,7 @@ build:
   script:
     - apk update
     - apk add curl
+    - apk add jq
     - |
       export VERSION=$(\
         curl -X GET http://registry.dev.hrl.internal:5000/v2/website/tags/list \
