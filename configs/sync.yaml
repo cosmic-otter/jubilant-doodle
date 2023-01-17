@@ -7,8 +7,8 @@ sync:
 
   tags: [ local-gitlab-dev ]
   stage: sync
-  only:
-    - schedules
+  rules:
+    - if: '$TARGETTASKNAME== "sync-task"'
   script:
     - git config --global user.email "srv@hrl.internal"
     - git config --global user.name "Service Account"
