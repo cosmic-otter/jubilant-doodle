@@ -25,7 +25,7 @@ deploy:
         curl -X GET http://registry.dev.hrl.internal:5000/v2/website/tags/list \
           | jq -r '.tags[0]'
         )
-    - yq ".spec.template.spec.containers[0].image = registry.dev.hrl.internal:5000/website:$VERSION" manifests/deployment.yaml
+    - yq -i ".spec.template.spec.containers[0].image = \"registry.dev.hrl.internal:5000/website:$VERSION\"" manifests/deployment.yaml
     - cat manifests/deployment.yaml
     - git config --global user.email "srv@hrl.internal"
     - git config --global user.name "Service Account"
