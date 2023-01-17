@@ -2,10 +2,11 @@ variables:
   DOCKER_DRIVER: overlay2
   # DOCKER_HOST: tcp://docker:2375
   DOCKER_TLS_CERTDIR: ""
+
 services:
   - name: docker:dind
     entrypoint: ["env", "-u", "DOCKER_HOST"]
-    command: ["dockerd-entrypoint.sh"]
+    command: ["--tls=false", "--insecure-registry=registry.dev.hrl.internal:5000"]
 
 
 stages:
