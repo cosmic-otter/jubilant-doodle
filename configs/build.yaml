@@ -4,8 +4,8 @@ build:
   only:
     changes:
       - website/*
-  rules:
-    - if: '$TARGETTASKNAME!= "sync-task"'
+  except:
+    - schedules
   script:
     - docker build -t api-website ./website
     - docker tag api-website registry.dev.hrl.internal:5000/website:0.0.1
