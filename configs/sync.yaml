@@ -1,4 +1,5 @@
 sync:
+  image: ubuntu:18.04
   before_script:
     - mkdir -p ~/.ssh
     - chmod 700 ~/.ssh
