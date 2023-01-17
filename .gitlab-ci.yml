@@ -5,7 +5,7 @@ variables:
 services:
   - name: docker:dind
     entrypoint: ["env", "-u", "DOCKER_HOST"]
-    command: ["--insecure-registry=repo.dev.hrl.internal:5000"]
+    command: ["dockerd-entrypoint.sh"]
 
 
 stages:
