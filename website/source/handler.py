@@ -29,7 +29,7 @@ async def home(request: Request):
 
         if len(results.json()) < 100:
             break
-
+            
         page += 1
 
     data = []
