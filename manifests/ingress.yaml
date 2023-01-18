@@ -6,8 +6,6 @@ metadata:
   namespace: website
   annotations:
     kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/health-check-path: "/health"
-    traefik.ingress.kubernetes.io/health-check-port: "80"
 spec:
   rules:
   - host: "k3s.dev.hrl.internal"
