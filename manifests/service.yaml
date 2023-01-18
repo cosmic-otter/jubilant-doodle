@@ -6,8 +6,10 @@ metadata:
   namespace: website
   annotations:
     kubernetes.io/ingress.class: traefik
-    traefik.ingress.kubernetes.io/health-check-path: "/health"
-    traefik.ingress.kubernetes.io/health-check-port: "80"
+  labels:
+      traefik.http.services.stuff.loadbalancer.healthcheck.path: /health
+      traefik.http.services.stuff.loadbalancer.healthcheck.interval: 15s
+      traefik.http.services.stuff.loadbalancer.healthcheck.timeout: 1s
 spec:
   selector:
     app: website
@@ -17,17 +19,3 @@ spec:
     - name: http
       port: 80
       targetPort: 3000
-  livenessProbe:
-    httpGet:
-      scheme: HTTP
-      path: /health
-      port: 80
-      initialDelaySeconds: 10
-      periodSeconds: 45
-  readinessProbe:
-    httpGet:
-      scheme: HTTP
-      path: /health
-      port: 80
-      initialDelaySeconds: 10
-      periodSeconds: 45
