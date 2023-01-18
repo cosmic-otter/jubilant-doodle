@@ -12,7 +12,6 @@ spec:
   selector:
     app: website
   type: LoadBalancer
-  loadBalancerIP: "k3s.dev.hrl.internal"
   ports:
     - name: http
       port: 80
