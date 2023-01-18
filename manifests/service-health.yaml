@@ -7,10 +7,11 @@ metadata:
     app.kubernetes.io/name: argocd-cm
     app.kubernetes.io/part-of: argocd
 data:
-  url: "k3s.dev.hrl.internal/health"
-  resource.customizations.health.v1_service: |
-    health_status = {}
+  resource.customizations: |
+    v1/Service:
+      health.lua: |
+        health_status = {}
 
-    health_status.status = "Healthy"
-    health_status.message = "Service Operational"
-    return health_status    
+        health_status.status = "Healthy"
+        health_status.message = "Service Operational"
+        return health_status    
