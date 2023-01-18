@@ -15,3 +15,17 @@ spec:
     - name: http
       port: 80
       targetPort: 3000
+  livenessProbe:
+    httpGet:
+      scheme: HTTP
+      path: /health
+      port: 80
+      initialDelaySeconds: 10
+      periodSeconds: 45
+  readinessProbe:
+    httpGet:
+      scheme: HTTP
+      path: /health
+      port: 80
+      initialDelaySeconds: 10
+      periodSeconds: 45
