@@ -34,13 +34,8 @@ spec:
             scheme: HTTP
             path: /health
             port: 3000
-            initialDelaySeconds: 10
-            periodSeconds: 45
         readinessProbe:
           httpGet:
             scheme: HTTP
             path: /health
             port: 3000
-            initialDelaySeconds: 10
-            periodSeconds: 45
-
