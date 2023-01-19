@@ -14,7 +14,7 @@ build:
           | jq -r '.tags[] | sub("^v.*";"")' 2> /dev/null | sort -Vr \
           | awk -F. '{$1++;print}' | head -n 1
         )
-    - export VERSION=$([[ $VERSION -gt 1 ]] || echo '1')
+    - export VERSION=$( if [[ $VERSION -gt 1 ]]; then echo $VERSION else echo '1' fi )
     - echo $VERSION
     - docker build -t api-website ./website
     - docker tag api-website registry.dev.hrl.internal:5000/website:$VERSION
